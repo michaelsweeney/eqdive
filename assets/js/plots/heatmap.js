@@ -9,7 +9,6 @@ export function heatmap(container, data) {
   let transition = 0;
   let ease = d3.easeLinear
 
-
   let body = container
   body.append('svg').attr('class', 'plot')
 
@@ -146,8 +145,6 @@ export function heatmap(container, data) {
     .style('display', 'none')
 
 
-
-
   svg.append('g')
     .attr('class', 'axis xAxis')
     .attr("transform", ctl.translate(margin.left, margin.top + plot_height))
@@ -252,8 +249,8 @@ function seriesChange(data) {
           return (+d3.timeFormat("%j")(d.Time)) * rectwidth })
 
         .attr("y", (d) => { 
-          let timestr = d.Time.toString()
-          let hoursplit = timestr.replace("2020","2019").split(" GMT")[0].split("2019 ")[1].split(":")[0]
+
+          let hoursplit = d3.timeFormat("%H")(d.Time)
           if (lasthour == hoursplit ) { 
               hoursplit = hoursplit - 1
           dstcheck = false}
@@ -274,12 +271,14 @@ function seriesChange(data) {
         return (+d3.timeFormat("%j")(d.Time)) * rectwidth })
 
       .attr("y", (d) => { 
-        let timestr = d.Time.toString()
-        let hoursplit = timestr.replace("2020","2019").split(" GMT")[0].split("2019 ")[1].split(":")[0]
+        let hoursplit = d3.timeFormat("%H")(d.Time)
         if (lasthour == hoursplit ) { 
             hoursplit = hoursplit - 1
         dstcheck = false}
         else {lasthour = hoursplit}
+
+        // console.log(hoursplit)
+        // console.log(rectheight)
         return hoursplit * rectheight })
         
         .attr("width", rectwidth)

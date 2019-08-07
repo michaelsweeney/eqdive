@@ -3,10 +3,8 @@ import * as fload from './assets/js/fileload.js'
 
 
 
-
 let body = d3.select('.body-container')
 let header = d3.select('.header')
-
 let btngroup = header.append('ul').attr('class', 'nav nav-tabs')
 
 btngroup.append('li').attr('class', 'nav-item').append('a').text('File Mgmt').attr('class', 'nav-link').attr('id', 'summary').on('click', () => { setActiveTab('summary') })
@@ -20,28 +18,30 @@ let heatmap_container = body.append('div').attr('class', 'plot_container heatmap
 let line_container = body.append('div').attr('class', 'plot_container line_container').style('display', 'none')
 let hist_container = body.append('div').attr('class', 'plot_container hist_container').style('display', 'none')
 
+setActiveTab('line')
 
 
-fetch
 
 let file = './assets/sampledata/csv/data.csv'
 let filetype = 'csv'
 
+// file = './assets/sampledata/hsr/DB Uhaul - Baseline Design.hsr'
 
-file = './assets/sampledata/hsr/City Point Base - Baseline Design.hsr'
-filetype = 'hsr'
-  
-
+// file = './assets/sampledata/hsr/City Point Proposed - Baseline Design.hsr'
+// filetype = 'hsr'
 
 
 fload.load[filetype](file).then((data) => {
+
   data = fload.prep[filetype](data)
-    plots.scatter(scatter_container, data)
-    plots.heatmap(heatmap_container, data )
-    plots.line(line_container, data)
-    plots.histogram(hist_container, data)
-    setActiveTab('heatmap')
-  },
+
+  plots.scatter(scatter_container, data)
+  plots.heatmap(heatmap_container, data)
+  plots.line(line_container, data)
+  plots.histogram(hist_container, data)
+  
+},
+
 )
 
 
@@ -88,11 +88,50 @@ function setActiveTab(tab_id) {
 
 
 
+// dragging
+var lastTarget = null;
 
-function importJS(jsname) {
-  let th = document.getElementsByTagName('head')[0]
-  var s = document.createElement('script');
-  s.setAttribute('type', 'text/javascript');
-  s.setAttribute('src', jsname);
-  th.appendChild(s);
+window.addEventListener("dragenter", (e) => {
+  lastTarget = e.target;
+  document.querySelector(".dropzone").style.visibility = "";
+  document.querySelector(".dropzone").style.opacity = 1;
+});
+
+window.addEventListener("dragleave", (e) => {
+  if (e.target === lastTarget || e.target === document) {
+    document.querySelector(".dropzone").style.visibility = "hidden";
+    document.querySelector(".dropzone").style.opacity = 0;
+  }
+});
+
+document.querySelector(".dropzone").addEventListener('drop', (e) => {
+  console.log(e.dataTransfer.files)
+  e.preventDefault();
+  readSingleFile(e)
+
+  document.querySelector(".dropzone").style.visibility = "hidden";
+  document.querySelector(".dropzone").style.opacity = 0;
+})
+
+$('.dropzone').on("dragenter dragstart dragend dragleave dragover drag drop", function (e) {
+  e.preventDefault();
+
+});
+
+
+
+
+
+function readSingleFile(e) {
+  var file = e.dataTransfer.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = (e) => {
+    var contents = e.target.result;
+    console.log(contents)
+  };
+  reader.readAsText(file);
 }
+

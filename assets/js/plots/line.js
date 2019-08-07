@@ -29,8 +29,7 @@ export function line(container, data) {
 
   let xScale = d3.scaleTime()
     .range([0, plot_width])
-    .domain([new Date('1/1/2019 1:00'), new Date('1/1/2020 0:00')])
-
+    .domain([d3.min(data, (d) => { return d.Time}), d3.max(data, (d) => { return d.Time})])
 
 
   let yScale = d3.scaleLinear()
@@ -94,7 +93,7 @@ export function line(container, data) {
 
   let xScale_brush = d3.scaleTime()
     .range([0, plot_width])
-    .domain([new Date('1/1/2019 1:00'), new Date('1/1/2020 0:00')])
+    .domain([d3.min(data, (d) => { return d.Time}), d3.max(data, (d) => { return d.Time})])
 
   let yScale_brush = d3.scaleLinear()
     .range([brush_height, 0])
@@ -167,6 +166,9 @@ export function line(container, data) {
     .attr("transform", ctl.translate(plot_width + margin.left + 25, margin.top))
 
 
+body.select('.selection').style('display', 'none')
+
+
 
 
   // add select and caller
@@ -196,7 +198,6 @@ export function line(container, data) {
     yScale.domain([min, max]);
 
     ctl.niceTicks(yScale, yAxis)
-
 
     yScale_brush.domain([min, max]);
 
@@ -292,6 +293,13 @@ export function line(container, data) {
         seriesarray.push({ x: x, y: y })
       }
 
+      let bwidth = body.select('.selection').node().width.animVal.value
+      let owidth = body.select('.overlay').node().width.animVal.value
+
+if (bwidth == owidth ) {
+  body.select('.selection').style('display', 'none')
+}
+
       if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
       let s = d3.event.selection || xScale_brush.range();
       xScale.domain(s.map(xScale_brush.invert, xScale_brush));
@@ -308,6 +316,14 @@ export function line(container, data) {
 
     let select = body.select('.line-select')
     let selected = select.selectAll('li .selected').selectAll('.text').nodes()
+
+    let bwidth = body.select('.selection').node().width.animVal.value
+    let owidth = body.select('.overlay').node().width.animVal.value
+
+if (bwidth == owidth ) {
+body.select('.selection').style('display', 'none')
+}
+
 
     let array = []
     for (let idx in selected) {
