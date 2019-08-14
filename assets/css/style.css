@@ -83,7 +83,7 @@ body {
 
 
 circle, rect {
-    shape-rendering: crispEdges
+    /* shape-rendering: crispEdges */
 }
 
 
@@ -377,4 +377,55 @@ div .dropzone {
     /* a nice fade effect, visibility toggles after 175ms, opacity will animate for 175ms. note display:none cannot be animated.  */
     transition: visibility 175ms, opacity 175ms;
 
+}
+
+
+
+
+
+
+
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+  z-index: -1;
+  padding: 10px;
+  font-family: Helvetica;
+
+}
+
+label {
+  font: Helvetica;
+}
+
+.inputfile + label {
+  color: white;
+  background-color: gray;
+  display: inline-block;
+  padding: 10px;
+  padding: 10px;
+  font-family: 'helvetica';
+  border-radius: 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: rgb(90, 90, 90);
+}
+
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile + label {
+  pointer-events: pointer; /* "hand" cursor */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none
 }

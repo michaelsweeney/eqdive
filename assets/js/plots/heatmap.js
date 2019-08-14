@@ -318,9 +318,6 @@ function legendChange(data) {
         })]),
       d3.max([0, d3.max(data, (d) => { return d[z_select_val] })])
     ])
-
-
-
     
     ctl.niceTicks(clrScale, clrAxis)
 

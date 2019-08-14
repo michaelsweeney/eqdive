@@ -8,26 +8,12 @@ function getExt(file) {
 
 
 
-// find all 'ext' files within 'dir'
-function findExtInDir(dir, ext) {
-  filearray = []
-  let files = fs.readdirSync(dir);
-  files.forEach((file) => {
-    if (getExt(file) == ext) {
-      filearray.push(dir + '/' + file)
-    }
-  })
-  return filearray
-}
-
-
-
 
 
 
 
 // sql / TS helpers
-sqlite3.Database.prototype.allAsync = function (query) {
+sqlite3.Database.prototype.allAsync = (query) => {
   let that = this;
   return new Promise((resolve, reject) => {
     that.all(query, (err, row) => {
