@@ -183,6 +183,16 @@ circle, rect {
 }
 
 
+.nav-link:hover {
+  transition: border-color 100ms, background-color 100ms ease-in-out;
+  border-right-color: rgb(207, 207, 207) !important;
+
+  border-left-color: rgb(207, 207, 207) !important;
+
+  border-top-color: rgb(207, 207, 207) !important;
+  /* border-width: 5px; */
+  background-color:rgb(224, 224, 224) !important;
+}
 
 
 .nav {

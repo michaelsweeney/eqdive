@@ -16,18 +16,19 @@ function initNav() {
   let line_container = body.append('div').attr('class', 'plot_container line_container').style('display', 'none')
   let hist_container = body.append('div').attr('class', 'plot_container hist_container').style('display', 'none')
   let files_container = body.append('div').attr('class', 'plot_container files_container').style('display', 'none')
-  
 
   setActiveTab('files')
 
+}
 
-// playing around with files mgmt... put this in
+
+function initFilesTab() {
+
   let filetab = d3.select(".files_container").style('padding', '50px')
   filetab.style('align-text', 'left')
   filetab.append('input').attr('type', 'file').attr('id', 'file').attr('multiple', true).attr('class', 'inputfile')
   filetab.append('label').attr('for', 'file').text('Upload Files (or drag anywhere)')
 }
-
 
 
 
@@ -75,4 +76,4 @@ function setActiveTab(tab_id) {
 
 
 
-export { initDrop, initNav }
+export { initDrop, initNav, initFilesTab, setActiveTab }
