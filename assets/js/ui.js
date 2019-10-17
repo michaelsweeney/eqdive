@@ -27,7 +27,7 @@ function initFilesTab() {
   let filetab = d3.select(".files_container").style('padding', '50px')
   filetab.style('align-text', 'left')
   filetab.append('input').attr('type', 'file').attr('id', 'file').attr('multiple', true).attr('class', 'inputfile')
-  filetab.append('label').attr('for', 'file').text('Upload Files (or drag anywhere)')
+  filetab.append('label').attr('for', 'file').text('Upload HSR files (or drag them into this window)')
 }
 
 
