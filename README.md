@@ -20,7 +20,7 @@ sys.path.append(eqresults_location)
 
 import eqresults as ep
 
-pathtosim = 'C:/simfiles/eplusout' # do not include extensions
+simfile = 'C:/simfiles/eplusout/Proposed Design - Baseline Design' # do not include extensions
 mysim = eq.LoadSim(pathtosim)
 ```
 
