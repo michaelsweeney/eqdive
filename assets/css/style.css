@@ -1,6 +1,6 @@
 
 body {
-    font-family: "helvetica";
+    font-family: Arial, Helvetica, sans-serif
 }
 
 .select-container {
@@ -47,18 +47,16 @@ body {
   align-content: center;
 }
 
-
+.title {
+  padding: 10px;
+  font-size: 1.15em;
+  
+}
 
 .hover-container {
   display: inline-block;
   min-height: 50px;
   margin: 10px;
-  /* min-width: 400px;
-  background-color: rgb(211, 211, 211);
-  border-color: rgb(163, 163, 163);
-  border-width: 1px;
-  border-radius: 5px;
-  border-style: solid; */
   margin: 15px;
   padding: 5px;
   text-align: center;
@@ -185,14 +183,15 @@ circle, rect {
 
 .nav-link:hover {
   transition: border-color 100ms, background-color 100ms ease-in-out;
-  border-right-color: rgb(207, 207, 207) !important;
-
-  border-left-color: rgb(207, 207, 207) !important;
-
-  border-top-color: rgb(207, 207, 207) !important;
-  /* border-width: 5px; */
+  border-color: rgb(207, 207, 207) !important;
   background-color:rgb(224, 224, 224) !important;
+
+  cursor: pointer;
+
+  /* border-width: 5px; */
 }
+
+
 
 
 .nav {
@@ -202,12 +201,13 @@ circle, rect {
 
 .nav-tabs {
   margin-left: 10px;
+  
 }
 
 .header {
   text-align: center;
   margin-bottom: 20px;
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(255, 255, 255);
   border-bottom-color:rgb(184, 184, 184);
   border-bottom-style: solid;
   border-bottom-width: .1px;
@@ -219,6 +219,7 @@ circle, rect {
   z-index: 999;
   -webkit-touch-callout: none;
   -webkit-user-select: none
+  
 }
 
 .header .active, .main-container {
@@ -228,11 +229,6 @@ circle, rect {
 
 .body-container {
   margin-top: 80px;
-}
-
-h4 {
-  padding-top: 10px;
-  font-family: Futura LT MD
 }
 
 
